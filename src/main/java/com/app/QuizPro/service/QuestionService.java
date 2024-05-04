@@ -60,7 +60,6 @@ public class QuestionService {
             questionDtos.add(questionDto);
         }
         return questionDtos;
-
     }
 
 }
