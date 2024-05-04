@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Application</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 text-center">
+            <h1>Welcome to Quiz Application</h1>
+            <p>Test your knowledge with our quiz!</p>
+            <a th:href="@{/quiz/list}" class="btn btn-primary">Quiz List</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 mb-4" th:each="quiz:${quizList}">
+        <div class="card">
+            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Category 1">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${quiz.title}"></h5>
+                <p class="card-text" th:text="${quiz.description}"></p>
+                <a th:href="@{/quiz/start/{id}(id=${quiz.id})}" class="btn btn-primary">Start Quiz</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

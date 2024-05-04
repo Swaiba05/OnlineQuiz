@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container ml-3 mt-4">
+
+    <h2>Questions</h2>
+    <table class="table">
+        <thead>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>
+        </thead>
+        <tbody>
+        <tr th:each="quiz:${quizList}">
+            <td th:text="${quiz.title}"></td>
+            <td th:text="${quiz.description}"></td>
+            <td><a th:href="@{/quiz/{id}(id=${quiz.id})}">Add Question</a></td>
+            <td><a th:href="@{/quiz/view/{id}(id=${quiz.id})}">View</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{'/quiz/create'}">Add Quiz</a>
+
+</div>
+</body>
+</html>

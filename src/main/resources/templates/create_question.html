@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Question</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container ml-3 mt-4">
+
+    <h2>Add New Question</h2>
+
+    <form th:action="@{/question/add/{id}(id=${questionDto.quizId})}" th:object="${questionDto}" method="post"
+          class="mt-4">
+        <div class="form-group">
+            <label for="question">Question</label>
+            <input type="text" th:field="*{question}" id="question"
+                   class="form-control col-sm-6 ml-2" placeholder="Enter Question"/>
+            <label for="option1">Option 1</label>
+            <input type="text" th:field="*{option1}" id="option1"
+                   class="form-control col-sm-6 ml-2" placeholder="Enter Option 1"/>
+            <label for="option2">Option 2</label>
+            <input type="text" th:field="*{option2}" id="option2"
+                   class="form-control col-sm-6 ml-2" placeholder="Enter Option 2"/>
+            <label for="option3">Option 3</label>
+            <input type="text" th:field="*{option3}" id="option3"
+                   class="form-control col-sm-6 ml-2" placeholder="Enter Option 3"/>
+            <label for="option4">Option 4</label>
+            <input type="text" th:field="*{option4}" id="option4"
+                   class="form-control col-sm-6 ml-2" placeholder="Enter Option 4"/>
+            <label for="rightAnswer">Right Answer</label>
+            <input type="text" th:field="*{answer}" id="rightAnswer"
+                   class="form-control col-sm-6 ml-2" placeholder="Enter Option 4"/>
+
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save Question"
+                   class="btn btn-primary ml-2"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

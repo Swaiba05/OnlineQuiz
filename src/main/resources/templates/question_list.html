@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Question List</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container ml-3 mt-4">
+
+  <h2>Questions</h2>
+  <table class="table">
+    <thead>
+    <th scope="col">Question</th>
+    <th scope="col">Option 1</th>
+    <th scope="col">Option 2</th>
+    <th scope="col">Option 3</th>
+    <th scope="col">Option 4</th>
+    </thead>
+    <tbody>
+    <tr th:each="question:${questionList}">
+      <td th:text="${question.question}"></td>
+      <td th:text="${question.option1}"></td>
+      <td th:text="${question.option2}"></td>
+      <td th:text="${question.option3}"></td>
+      <td th:text="${question.option4}"></td>
+    </tr>
+    </tbody>
+    <a th:href="@{/question}" class="btn btn-primary">Add new Question</a>
+  </table>
+
+</div>
+</body>
+</html>
