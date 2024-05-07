@@ -18,14 +18,15 @@ $(".nextBtn").on("click", function(){
     }
     if(index<=questions.length-1){
         result.push({
-            id:currentQuestion.question,
-            rightAnswer: selectedValue
+            id:currentQuestion.id,
+            answer: selectedValue
         })
     }
+    index++;
     if(index==questions.length) {
         submitResult(result)
+        return
     }
-    index++;
     currentQuestion = questions[index]
 
     if(index<=questions.length-1){
@@ -66,10 +67,10 @@ function submitResult(data) {
     $.ajax({
         url:  window.origin+"/quiz/submit/"+$("#quizId").val(),
         type: "POST",
-        data: data,
-        dataType: "json", // Assuming the controller returns JSON data
+        data: JSON.stringify(data),
+        contentType: "application/json", // Assuming the controller returns JSON data
         success: function(data) {
-            debugger
+            window.location.href = window.origin+"/quiz/result?score=" + data.percentage;
             console.log(data)
         }
     });

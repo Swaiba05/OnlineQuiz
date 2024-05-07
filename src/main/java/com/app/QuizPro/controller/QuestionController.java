@@ -20,15 +20,6 @@ public class QuestionController {
 
     @Autowired
     private QuestionService questionService;
-    @GetMapping("")
-    private String createQuestion(Model model) {
-        // define a html page that returns question creation page
-        QuestionDto questionDto = new QuestionDto();
-        model.addAttribute("questionDto",questionDto);
-        return "create_question";
-
-    }
-//question/add
 
     @PostMapping("add")
     private String addQuestion(QuestionDto questionDto){

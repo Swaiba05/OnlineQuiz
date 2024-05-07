@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Congratulations!</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="text-center">Congratulations!</h1>
+        </div>
+        <div class="card-body">
+          <p class="lead text-center">Your quiz has been submitted successfully!</p>
+          <p class="lead text-center">Your score is: <span th:text="${score}"></span></p>
+          <p class="text-center">Thank you for participating!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <a th:href="@{/}">Home</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

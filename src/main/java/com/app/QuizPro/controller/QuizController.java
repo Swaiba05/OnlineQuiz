@@ -2,6 +2,8 @@ package com.app.QuizPro.controller;
 
 import com.app.QuizPro.dto.QuestionDto;
 import com.app.QuizPro.dto.QuizDto;
+import com.app.QuizPro.dto.QuizResultDto;
+import com.app.QuizPro.dto.ResultDto;
 import com.app.QuizPro.service.QuestionService;
 import com.app.QuizPro.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +63,29 @@ private QuizService quizService;
             ex.printStackTrace();
         }
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
+    }
+    @PostMapping("submit/{id}")
+    private ResponseEntity<QuizResultDto> submitQuiz(@RequestBody List<ResultDto> result, @PathVariable Integer id) {
+        try {
+            return new ResponseEntity<>(quizService.submitQuiz(result, id), HttpStatus.OK);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+    @GetMapping("result")
+    private String finalResult(Model model, @RequestParam BigDecimal score) {
+        model.addAttribute("score", score + "%");
+        return "result";
+    }
+    @GetMapping("{id}")
+    private String createQuestion(Model model, @PathVariable Integer id) {
+        // define a html paidge that returns question creation page
+        QuestionDto questionDto = new QuestionDto();
+        questionDto.setQuizId(id);
+        model.addAttribute("questionDto",questionDto);
+        return "create_question";
+
     }
 }
 
